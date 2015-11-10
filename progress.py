@@ -26,8 +26,10 @@ def progress_bar(index, length):
     return '%s %s %s' % (percent_progress, bar, message)
 
 if __name__ == '__main__':
+    # clear the screen
     os.system('clear')
 
+    # print a title in the center of the screen
     screen_width = int(os.popen('stty size', 'r').read().split()[1])
     print
     print 'PROGRESS BAR'.center(screen_width)
@@ -37,12 +39,15 @@ if __name__ == '__main__':
     for i in range(length):
         time.sleep(.1)
 
+        # print the progress bar in place
         sys.stdout.write('\r%s' % progress_bar(i, length))
         sys.stdout.flush()
 
     time.sleep(.1)
 
+    # print the complete progress bar
     print '\r%s' % progress_bar(length, length)
 
+    # print newlines to use space
     screen_height = int(os.popen('stty size', 'r').read().split()[0])
     print '\n' * (screen_height - 6)
